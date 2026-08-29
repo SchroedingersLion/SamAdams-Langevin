@@ -3,7 +3,7 @@ from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
 import torch.nn as nn
 import numpy as np
-from BNN_samplers import BAOAB, ZBAOABZ
+from Samplers import BAOAB, ZBAOABZ
 
 
 #%% MODEL.
@@ -41,7 +41,7 @@ class SimpleCNN(nn.Module):
 #%% SETTINGS.
 num_classes = 10
 method = "ZBAOABZ" # "BAOAB" or "ZBAOABZ"
-B = 10000          # large batch size
+B = 10000          # Batch size
 epochs = 10
 meas_freq = 1
 lr = 2e-3
@@ -58,7 +58,7 @@ m = 0.1
 M = 10
 
 cuda_idx = "0"      # Main GPU index to use for training. Adjust based on your system.
-dev_ids = [0,1,2,3] # list of GPU indices to use for DataParallel. Adjust based on your system.
+dev_ids = [0] # List of GPU indices to use for DataParallel. Adjust based on your system.
 
 
 torch.manual_seed(1)
@@ -77,8 +77,8 @@ transfos = transforms.Compose([
 train_dataset = datasets.CIFAR10(".", train = True, download = True, transform = transfos)
 test_dataset = datasets.CIFAR10(".", train = False, download = True, transform = transfos)
 
-# create subset of data
-N_subset = 1000 # examples per class to use.
+# Create subset of data.
+N_subset = 1000 # Examples per class to use.
 labels = np.array(train_dataset.targets)
 selected_indices = []
 
@@ -86,7 +86,7 @@ for class_idx in range(10):
 
     class_indices = np.where(labels == class_idx)[0]
     
-    # Randomly select indices for this class
+    # Randomly select indices for this class.
     selected_class_indices = np.random.choice(class_indices, N_subset, replace=False)
     
     selected_indices.extend(selected_class_indices)
@@ -104,11 +104,11 @@ model = SimpleCNN()
 
 if device.type == 'cuda':
     print("Entered this if branch")
-    model= nn.DataParallel(model, device_ids = dev_ids)  ## wrap in DataParallel for multiple GPUs.
+    model= nn.DataParallel(model, device_ids = dev_ids)  # Wrap in DataParallel for multiple GPUs.
 
 model.to(device)
 
-# Create data loaders
+# Create data loaders.
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=B, shuffle=True, num_workers=num_workers, pin_memory=True)
 test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=64, shuffle=False, num_workers=num_workers, pin_memory=True)
 
