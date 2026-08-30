@@ -1,5 +1,6 @@
 {
   "title": "SamAdams-Langevin",
+  "description": "Langevin dynamics simulation software.",
   "upload_type": "software",
   "creators": [
     {
@@ -20,6 +21,6 @@
       "affiliation": "University of Edinburgh",
       "orcid": "0000-0001-8504-7091",
       "type": "Researcher"
-    },
+    }
   ]
 }
