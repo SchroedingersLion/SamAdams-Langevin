@@ -7,7 +7,7 @@ This repository provides the PyTorch reference implementation for the **SamAdams
 **Benedict Leimkuhler, René Lohmann, and Peter A. Whalley.** (2026). "A Langevin sampling algorithm inspired by the Adam optimizer." *ACM Transactions on Probabilistic Machine Learning*. DOI: [10.1145/3806203](https://doi.org/10.1145/3806203)
 
 **Note on the Codebase & Low-Dimensional Experiments**  
-This repository is strictly scoped to the Neural Network implementation of the algorithm. For the reference implementation for the two-dimensional models (e.g., the Beale or the Star potential), we refer to the repository [SamplingSuite2D](https://github.com/SchroedingersLion/SamplingSuite2D) (Zenodo DOI: [10.5281/zenodo.22072352](https://doi.org/10.5281/zenodo.22072352)).
+This repository is strictly scoped to the Neural Network implementation of the algorithm. For the reference implementation for the two-dimensional models (e.g., the Beale or the Star potential), we refer to the repository [SamplingSuite2D](https://github.com/SchroedingersLion/SamplingSuite2D) (Zenodo DOI: [10.5281/zenodo.22180579](https://doi.org/10.5281/zenodo.22180579)).
 
 ## Repository Contents
 * `scripts/Samplers.py`: Contains the PyTorch `nn.Module` implementations of the fixed-stepsize `BAOAB` integrator and the adaptive-stepsize `ZBAOABZ` (SamAdams) integrator. 
