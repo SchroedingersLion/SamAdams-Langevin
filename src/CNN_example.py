@@ -40,25 +40,28 @@ class SimpleCNN(nn.Module):
 
 #%% SETTINGS.
 num_classes = 10
-method = "ZBAOABZ" # "BAOAB" or "ZBAOABZ"
-B = 10000          # Batch size
+method = "ZBAOABZ" # "BAOAB" or "ZBAOABZ".
+B = 10000          # Batch size.
 epochs = 10
 meas_freq = 1
-lr = 2e-3
 lr_schedule = None
 gamma = 1
-T = 1
+T = 1              # Temperature.
 weight_decay = 1e-5
 
+lr = 2e-3          # BAOAB stepsize / learning rate (ignored for ZBAOABZ).
 
+# ZBAOABZ parameters.
 alpha = 500
-alpha2 = 5e-8
-dtau = 1e-3
+# omega = 20_000_000
+omega = 60_000
+# dtau = 1e-3
+dtau = 2e-3
 m = 0.1
 M = 10
 
 cuda_idx = "0"      # Main GPU index to use for training. Adjust based on your system.
-dev_ids = [0] # List of GPU indices to use for DataParallel. Adjust based on your system.
+dev_ids = [0]       # List of GPU indices to use for DataParallel. Adjust based on your system.
 
 
 torch.manual_seed(1)
@@ -118,7 +121,7 @@ if method == "BAOAB":
     (loss_train, accu_train, accu_test) = sampler.train()
     print("Train accu / test accu:", accu_train, accu_test)
 elif method == "ZBAOABZ":
-    sampler = ZBAOABZ(model, train_loader, test_loader, criterion, dtau, weight_decay, gamma, alpha, alpha2, m, M, T, epochs, device, meas_freq, lr_schedule=lr_schedule)
+    sampler = ZBAOABZ(model, train_loader, test_loader, criterion, dtau, weight_decay, gamma, alpha, omega, m, M, T, epochs, device, meas_freq, lr_schedule=lr_schedule)
     (loss_train, accu_train, accu_test, dt, zetas) = sampler.train()
     print("Train accu / test accu:", accu_train, accu_test)
 else:

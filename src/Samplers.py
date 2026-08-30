@@ -156,7 +156,7 @@ class BAOAB(nn.Module):
 #%% ZBAOABZ
 class ZBAOABZ(nn.Module):
     
-    def __init__(self, model, train_loader, test_loader, criterion, dtau, weight_decay, gamma, alpha, alpha2, m, M, temperature, epochs, device, meas_freq, start_meas=0, lr_schedule=None):
+    def __init__(self, model, train_loader, test_loader, criterion, dtau, weight_decay, gamma, alpha, omega, m, M, temperature, epochs, device, meas_freq, start_meas=0, lr_schedule=None):
         super(ZBAOABZ, self).__init__()
         self.model = model
         self.train_loader = train_loader
@@ -167,7 +167,7 @@ class ZBAOABZ(nn.Module):
         self.weight_decay = weight_decay
         self.gamma = gamma
         self.alpha = alpha
-        self.alpha2 = alpha2
+        self.omega_inv = 1/omega
         self.T = temperature
         self.epochs = epochs
         self.device = device
@@ -351,7 +351,7 @@ class ZBAOABZ(nn.Module):
         for p in list(self.model.parameters()):
             self.gradnorm += torch.sum(p.grad.data**2)
         
-        self.gradnorm *= self.alpha2   
+        self.gradnorm *= self.omega_inv   
     
     def Z_step(self):
         self.zeta = self.exptau_half * self.zeta + self.alpha_inv * (1-self.exptau_half) * self.gradnorm
