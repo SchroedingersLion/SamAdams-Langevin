@@ -11,7 +11,7 @@ This repository is strictly scoped to the Neural Network implementation of the a
 
 ## Repository Contents
 * `scripts/Samplers.py`: Contains the PyTorch `nn.Module` implementations of the fixed-stepsize `BAOAB` integrator and the adaptive-stepsize `ZBAOABZ` (SamAdams) integrator. 
-* `scripts/CNN_example.py`: A Minimal Working Example (MWE) demonstrating how to wrap a standard PyTorch CNN with the `ZBAOABZ` sampler and train it on a subset of CIFAR10.
+* `scripts/CNN_example.py`: A Minimal Working Example (MWE) demonstrating how to wrap a standard PyTorch CNN with the `ZBAOABZ` sampler and train it on MNIST.
 
 ## Dependencies
 The MWE was tested using the following specific package versions:
