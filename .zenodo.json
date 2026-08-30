@@ -1,0 +1,25 @@
+{
+  "title": "SamAdams-Langevin",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Lohmann, René",
+      "affiliation": "University of Edinburgh",
+      "orcid": "0000-0001-5478-841X"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Whalley, Peter A.",
+      "affiliation": "ETH Zürich",
+      "orcid": "0000-0002-8360-0807",
+      "type": "Researcher"
+    },
+    {
+      "name": "Leimkuhler, Benedict",
+      "affiliation": "University of Edinburgh",
+      "orcid": "0000-0001-8504-7091",
+      "type": "Researcher"
+    },
+  ]
+}
