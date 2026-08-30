@@ -1,5 +1,7 @@
 # SamAdams PyTorch Implementation
 
+[![DOI](https://zenodo.org/badge/1189142909.svg)](https://doi.org/10.5281/zenodo.22180271)
+
 This repository provides the PyTorch reference implementation for the **SamAdams** adaptive-stepsize Langevin dynamics algorithm introduced in 
 
 **Benedict Leimkuhler, René Lohmann, and Peter A. Whalley.** (2026). "A Langevin sampling algorithm inspired by the Adam optimizer." *ACM Transactions on Probabilistic Machine Learning*. DOI: [10.1145/3806203](https://doi.org/10.1145/3806203)
